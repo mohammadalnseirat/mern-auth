@@ -2,10 +2,13 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRouting from "./routes/user.route.js";
+import authRouting from "./routes/auth.route.js";
 const port = process.env.PORT || 3000;
 dotenv.config();
 
 const app = express();
+
+app.use(express.json());
 
 mongoose
   .connect(process.env.MONGO)
@@ -22,3 +25,4 @@ app.listen(port, () => {
 
 // test api routes:
 app.use("/api/user", userRouting);
+app.use('/api/auth',authRouting)
